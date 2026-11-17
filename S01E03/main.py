@@ -29,7 +29,7 @@ os.environ.setdefault("REQUESTS_CA_BUNDLE", certifi.where())
 
 API_KEY = os.environ["AG3NTS_API_KEY"]
 HUB_BASE = "https://hub.ag3nts.org"
-SSL_CTX = ssl._create_unverified_context()
+SSL_CTX = ssl.create_default_context(cafile=certifi.where())
 TARGET_PLANT_CODE = "PWR6132PL"
 
 # ── In-memory session store (sessionID → list of messages) ────────────────────

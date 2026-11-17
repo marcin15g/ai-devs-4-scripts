@@ -25,13 +25,14 @@ Answer: ["rocket", "up", "up", "up", "right", "right", "right", "right", "right"
 """
 
 import json, ssl
+import certifi
 from collections import deque
 from urllib.request import urlopen, Request
 
 API_KEY = os.environ["AG3NTS_API_KEY"]
 VERIFY_URL = "https://hub.ag3nts.org/verify"
 BASE_URL = "https://hub.ag3nts.org"
-SSL_CTX = ssl._create_unverified_context()
+SSL_CTX = ssl.create_default_context(cafile=certifi.where())
 
 
 def post(url, payload):

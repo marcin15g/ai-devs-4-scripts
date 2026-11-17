@@ -8,6 +8,7 @@ import base64
 import json
 import os
 import ssl
+import certifi
 import time
 import urllib.request
 
@@ -35,7 +36,7 @@ VERIFY_URL = "https://hub.ag3nts.org/verify"
 MAP_URL = f"https://hub.ag3nts.org/data/{API_KEY}/drone.png"
 POWER_PLANT_CODE = "PWR6132PL"
 
-_SSL_CTX = ssl._create_unverified_context()
+_SSL_CTX = ssl.create_default_context(cafile=certifi.where())
 
 
 # ── HTTP helper with retry ───────────────────────────────────────────────────

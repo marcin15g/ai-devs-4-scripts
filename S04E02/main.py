@@ -3,12 +3,13 @@ import os
 """S04E02 – windpower: configure wind turbine schedule within 40-second window."""
 
 import json, ssl, time, threading
+import certifi
 from urllib.request import urlopen, Request
 
 API_KEY = os.environ["AG3NTS_API_KEY"]
 BASE = "https://hub.ag3nts.org"
 VERIFY = f"{BASE}/verify"
-SSL_CTX = ssl._create_unverified_context()
+SSL_CTX = ssl.create_default_context(cafile=certifi.where())
 
 # Weather analysis results:
 # Storms (wind > 14 m/s) → pitch 90°, idle:

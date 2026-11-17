@@ -6,12 +6,13 @@ Demonstrates calling Claude with a tool that makes an external HTTP request.
 import json
 import os
 import ssl
+import certifi
 import urllib.parse
 import urllib.request
 import anthropic
 
-# Skip SSL verification (macOS missing certificate bundle issue)
-_SSL_CTX = ssl._create_unverified_context()
+# Verify TLS against certifi's CA bundle (macOS Python may lack system certs)
+_SSL_CTX = ssl.create_default_context(cafile=certifi.where())
 
 
 # ── Tool implementation ────────────────────────────────────────────────────────

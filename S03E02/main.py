@@ -6,13 +6,14 @@ restricted Linux VM accessed via the shell API, then submit the ECCS code."""
 import json
 import re
 import ssl
+import certifi
 import time
 import urllib.request
 
 API_KEY = os.environ["AG3NTS_API_KEY"]
 SHELL_URL = "https://hub.ag3nts.org/api/shell"
 VERIFY_URL = "https://hub.ag3nts.org/verify"
-_ctx = ssl._create_unverified_context()
+_ctx = ssl.create_default_context(cafile=certifi.where())
 
 
 def _post(url: str, payload: dict) -> str:
