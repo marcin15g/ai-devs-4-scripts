@@ -3,6 +3,7 @@ import os
 """S03E04 – negotiations: expose tool endpoints for the ag3nts agent."""
 
 import csv, json, re, ssl, time
+import certifi
 from collections import defaultdict
 from urllib.request import urlopen, Request
 from flask import Flask, request, jsonify
@@ -11,7 +12,7 @@ from pyngrok import ngrok
 # ── config ──────────────────────────────────────────────────────────────
 API_KEY = os.environ["AG3NTS_API_KEY"]
 VERIFY_URL = "https://hub.ag3nts.org/verify"
-SSL_CTX = ssl._create_unverified_context()
+SSL_CTX = ssl.create_default_context(cafile=certifi.where())
 DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ── load data ───────────────────────────────────────────────────────────

@@ -11,6 +11,7 @@ Submits anomaly file IDs to /verify endpoint.
 import json
 import os
 import ssl
+import certifi
 import time
 import urllib.request
 import zipfile
@@ -36,7 +37,7 @@ LLM_MODEL = (
 VERIFY_URL = "https://hub.ag3nts.org/verify"
 SENSORS_URL = "https://hub.ag3nts.org/dane/sensors.zip"
 
-_SSL_CTX = ssl._create_unverified_context()
+_SSL_CTX = ssl.create_default_context(cafile=certifi.where())
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SENSORS_DIR = os.path.join(SCRIPT_DIR, "sensors")
 

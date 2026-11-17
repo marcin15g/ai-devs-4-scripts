@@ -10,6 +10,7 @@ Then submits the answer to the hub /verify endpoint.
 import json
 import os
 import ssl
+import certifi
 import time
 import urllib.request
 
@@ -24,7 +25,7 @@ LLM_MODEL = os.environ.get("ANTHROPIC_DEFAULT_SONNET_MODEL", "claude-sonnet-4-5"
 ZMAIL_URL = "https://hub.ag3nts.org/api/zmail"
 VERIFY_URL = "https://hub.ag3nts.org/verify"
 
-_SSL_CTX = ssl._create_unverified_context()
+_SSL_CTX = ssl.create_default_context(cafile=certifi.where())
 
 
 # ── HTTP helper with retry ───────────────────────────────────────────────────
